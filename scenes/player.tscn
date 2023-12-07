@@ -1,0 +1,108 @@
+[gd_scene load_steps=22 format=3 uid="uid://c8fkahe0kl8rb"]
+
+[ext_resource type="Script" path="res://scripts/movement/top_down_controller.gd" id="1_1xj47"]
+[ext_resource type="Shader" path="res://shaders/sprite.gdshader" id="2_70hog"]
+[ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="3_6q5x4"]
+[ext_resource type="Script" path="res://scripts/interaction/hit/hitbox.gd" id="4_ci3ts"]
+[ext_resource type="Script" path="res://scripts/interaction/effects/sprite_shake_effect.gd" id="5_ujbad"]
+[ext_resource type="Script" path="res://scripts/interaction/effects/slow_mo_effect.gd" id="6_vts2e"]
+[ext_resource type="Script" path="res://scripts/interaction/effects/color_flicker_effect.gd" id="7_r6g0q"]
+[ext_resource type="Script" path="res://scripts/interaction/effects/particle_effect.gd" id="8_tgmri"]
+[ext_resource type="Script" path="res://scripts/movement/pointer_rotator.gd" id="9_3ulbp"]
+[ext_resource type="Texture2D" uid="uid://dqnvyneq7rl8f" path="res://sprites/common/gun.png" id="10_f0a3o"]
+[ext_resource type="Script" path="res://scripts/movement/rotation_flipped_sprite.gd" id="11_ackbl"]
+[ext_resource type="Script" path="res://scripts/gameplay/gun.gd" id="12_lp3p3"]
+[ext_resource type="PackedScene" uid="uid://bkywrvgqsvvmu" path="res://scenes/common/bullet.tscn" id="13_mh3v5"]
+[ext_resource type="Script" path="res://scripts/interaction/effects/camera_shake_effect.gd" id="14_pl7b0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7rvq"]
+resource_local_to_scene = true
+shader = ExtResource("2_70hog")
+shader_parameter/is_shaking = true
+shader_parameter/amplitude = 0.0
+shader_parameter/is_flickering = false
+shader_parameter/flicker_color = Color(1, 1, 1, 1)
+shader_parameter/flicker_frequency = 10.0
+
+[sub_resource type="Resource" id="Resource_ej8lc"]
+script = ExtResource("5_ujbad")
+sprite_path = NodePath("../Sprite2D")
+max_amplitude = 5.0
+shake_time = 1.0
+
+[sub_resource type="Resource" id="Resource_iuduy"]
+script = ExtResource("6_vts2e")
+slowmo_time = 0.5
+slowmo_scale = 0.5
+
+[sub_resource type="Resource" id="Resource_jtvvk"]
+script = ExtResource("7_r6g0q")
+sprite_path = NodePath("../Sprite2D")
+flicker_time = 1.0
+
+[sub_resource type="Resource" id="Resource_qgl23"]
+script = ExtResource("8_tgmri")
+particles_path = NodePath("../CPUParticles2D")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xemoo"]
+radius = 9.84886
+
+[sub_resource type="Resource" id="Resource_8ev03"]
+script = ExtResource("14_pl7b0")
+camera_trauma = 1.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(724, 264)
+motion_mode = 1
+platform_wall_layers = 1
+script = ExtResource("1_1xj47")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_x7rvq")
+texture = ExtResource("3_6q5x4")
+region_enabled = true
+region_rect = Rect2(16.674, 136.913, 16.6211, 15.2697)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1000
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.15
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 86.54
+initial_velocity_max = 86.54
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_ci3ts")
+hp = 50.0
+damage_effects = Array[Resource("res://scripts/interaction/effects/empty_effect.gd")]([SubResource("Resource_ej8lc"), SubResource("Resource_iuduy"), SubResource("Resource_jtvvk"), SubResource("Resource_qgl23")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_xemoo")
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("9_3ulbp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun"]
+texture_filter = 1
+position = Vector2(16, 0)
+texture = ExtResource("10_f0a3o")
+script = ExtResource("11_ackbl")
+
+[node name="Node2D" type="Node2D" parent="Gun/Sprite2D"]
+position = Vector2(4.12726, -2.06363)
+scale = Vector2(0.171969, 0.171969)
+script = ExtResource("12_lp3p3")
+bullet_scene = ExtResource("13_mh3v5")
+shoot_effects = Array[Resource("res://scripts/interaction/effects/empty_effect.gd")]([SubResource("Resource_8ev03")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xemoo")
+
+[node name="InvTimer" type="Timer" parent="."]
