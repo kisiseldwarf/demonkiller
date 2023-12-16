@@ -29,4 +29,4 @@ func _process(delta):
 func attack_hitbox(collider: Node2D):
 	print("wtf")
 	if (collider.is_in_group('attackable')):
-		collider.hit(get_parent().damage, collider.position - position)
+		collider.hit(get_parent().damage, collider.position - get_parent().position)
