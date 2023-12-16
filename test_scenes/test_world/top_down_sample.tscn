@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://clnfq2gqweyhp"]
+[gd_scene load_steps=20 format=3 uid="uid://clnfq2gqweyhp"]
 
 [ext_resource type="Script" path="res://test_scenes/test_world/top_down_sample.gd" id="1_rqwxm"]
 [ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_6p2pd"]
 [ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="3_j7yie"]
 [ext_resource type="Script" path="res://scripts/interaction/hit/hitbox.gd" id="5_46rsr"]
 [ext_resource type="Script" path="res://scripts/interaction/effects/sprite_shake_effect.gd" id="6_4ru1k"]
+[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="13_sclgu"]
 [ext_resource type="Script" path="res://scripts/interaction/hit/hurtbox.gd" id="16_uhyld"]
 [ext_resource type="Texture2D" uid="uid://bi7fkmg3oosb7" path="res://sprites/shapes/square.png" id="17_smrhj"]
 [ext_resource type="PackedScene" uid="uid://dxqebyftb6bfx" path="res://enemy.tscn" id="18_oppnd"]
@@ -454,7 +455,7 @@ shader = ExtResource("19_d1su2")
 shader_parameter/is_shaking = true
 shader_parameter/amplitude = 0.0
 
-[node name="Top Down Sample" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_rqwxm")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -525,3 +526,5 @@ power = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("22_6jdru")
+
+[node name="Hud" parent="." instance=ExtResource("13_sclgu")]

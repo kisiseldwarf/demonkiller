@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxqebyftb6bfx"]
+[gd_scene load_steps=6 format=3 uid="uid://dxqebyftb6bfx"]
 
 [ext_resource type="Script" path="res://scenes/samples/CharacterBody2D.gd" id="1_h8ena"]
 [ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_rfpmf"]
@@ -7,9 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k48cb"]
 size = Vector2(100, 100)
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcvpt"]
+radius = 14.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["attackable"]]
 position = Vector2(694, 278)
 script = ExtResource("1_h8ena")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,3 +29,6 @@ script = ExtResource("3_n8u73")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox2"]
 modulate = Color(1, 0, 0, 1)
 shape = SubResource("RectangleShape2D_k48cb")
+
+[node name="collisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bcvpt")

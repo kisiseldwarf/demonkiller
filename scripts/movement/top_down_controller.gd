@@ -4,6 +4,7 @@ class_name TopDownController
 
 @export var speed = 500.0
 @export var life = 100.0
+@export var damage = 10.0
 
 var direction : Vector2
 
