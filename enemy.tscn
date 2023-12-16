@@ -32,3 +32,6 @@ shape = SubResource("RectangleShape2D_k48cb")
 
 [node name="collisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bcvpt")
+
+[node name="ProjectionTimer" type="Timer" parent="."]
+wait_time = 0.1

@@ -4,17 +4,16 @@ var is_attacking: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	$Area2D.monitoring = false
 
 func attack():
-	show()
+	$Area2D.monitoring = true
 	is_attacking = true
-	$Node2D/Sprite2D.play()
+	$Sprite2D.play()
 	$AttackTimer.start()
 	await $AttackTimer.timeout
-	$Node2D/Sprite2D.stop()
+	$Area2D.monitoring = false
 	is_attacking = false
-	hide()
 
 func _input(input):
 	if Input.is_action_just_pressed("attack"):
@@ -28,5 +27,6 @@ func _process(delta):
 	look_at(mouse_pos)
 
 func attack_hitbox(collider: Node2D):
+	print("wtf")
 	if (collider.is_in_group('attackable')):
-		collider.hit(get_parent().damage)
+		collider.hit(get_parent().damage, collider.position - position)

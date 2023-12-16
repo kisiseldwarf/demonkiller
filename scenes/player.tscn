@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8fkahe0kl8rb"]
+[gd_scene load_steps=24 format=3 uid="uid://c8fkahe0kl8rb"]
 
 [ext_resource type="Script" path="res://scripts/movement/top_down_controller.gd" id="1_1xj47"]
 [ext_resource type="Shader" path="res://shaders/sprite.gdshader" id="2_70hog"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/interaction/effects/color_flicker_effect.gd" id="7_r6g0q"]
 [ext_resource type="Script" path="res://scripts/interaction/effects/particle_effect.gd" id="8_tgmri"]
 [ext_resource type="Script" path="res://scenes/Sword.gd" id="9_e4vh6"]
-[ext_resource type="Script" path="res://scenes/Node2D.gd" id="10_v61em"]
 [ext_resource type="Texture2D" uid="uid://dltwy2lg3t2hf" path="res://sprites/sword_slash/File1.png" id="11_05wpm"]
 [ext_resource type="Texture2D" uid="uid://cigjxjcok7y5s" path="res://sprites/sword_slash/File2.png" id="12_eqb22"]
 [ext_resource type="Texture2D" uid="uid://b0nxalxl883pj" path="res://sprites/sword_slash/File3.png" id="13_nttob"]
@@ -73,6 +72,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_qmmb7")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -117,20 +119,19 @@ shape = SubResource("CircleShape2D_xemoo")
 [node name="Sword" type="Node2D" parent="."]
 script = ExtResource("9_e4vh6")
 
-[node name="Node2D" type="Node2D" parent="Sword"]
-script = ExtResource("10_v61em")
-
-[node name="Area2D" type="Area2D" parent="Sword/Node2D"]
+[node name="Area2D" type="Area2D" parent="Sword"]
 position = Vector2(25, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Node2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fkl20")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Sword/Node2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Sword"]
 texture_filter = 1
 scale = Vector2(0.0925, 0.0925)
 sprite_frames = SubResource("SpriteFrames_6h5k1")
+frame = 6
+frame_progress = 1.0
 
 [node name="AttackTimer" type="Timer" parent="Sword"]
 wait_time = 0.2
@@ -140,4 +141,4 @@ shape = SubResource("CircleShape2D_xemoo")
 
 [node name="InvTimer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="Sword/Node2D/Area2D" to="Sword" method="attack_hitbox"]
+[connection signal="body_entered" from="Sword/Area2D" to="Sword" method="attack_hitbox"]
