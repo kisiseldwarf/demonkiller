@@ -22,7 +22,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func get_player_direction() -> Vector2:
-	return get_tree().get_first_node_in_group("Player").position - self.position
+	return player.position - self.position
 
 func hit(damage, projection_direction = Vector2.ZERO):
 	print("Hit !")
