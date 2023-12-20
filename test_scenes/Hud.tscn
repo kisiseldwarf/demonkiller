@@ -1,15 +1,95 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl3p37yaagj4a"]
+[gd_scene load_steps=5 format=3 uid="uid://cl3p37yaagj4a"]
 
 [ext_resource type="Script" path="res://test_scenes/test_world/Hud.gd" id="1_nxspo"]
+[ext_resource type="Texture2D" uid="uid://dbff6t7eb70t7" path="res://sprites/ui/barBack_horizontalMid.png" id="2_b8th3"]
+[ext_resource type="Script" path="res://test_scenes/GameOver.gd" id="2_ke4f6"]
+[ext_resource type="Texture2D" uid="uid://b7p0t38vyln1k" path="res://sprites/ui/barGreen_horizontalMid.png" id="4_r50w5"]
 
 [node name="Hud" type="CanvasLayer" groups=["Hud"]]
 script = ExtResource("1_nxspo")
 
-[node name="Score" type="Label" parent="."]
+[node name="GameOver" type="Panel" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ke4f6")
+
+[node name="Label" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+
+[node name="RetryButton" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 49.0
+offset_right = 25.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="Score" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -221.0
+offset_right = 20.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -17.0
+offset_top = 10.0
+offset_right = 23.0
+offset_bottom = 33.0
 grow_horizontal = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 31.0
+offset_right = 245.0
+offset_bottom = 46.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_b8th3")
+texture_progress = ExtResource("4_r50w5")
+
+[connection signal="pressed" from="GameOver/RetryButton" to="GameOver" method="retry"]

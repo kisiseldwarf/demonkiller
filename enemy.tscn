@@ -21,12 +21,12 @@ texture = ExtResource("2_rfpmf")
 region_enabled = true
 region_rect = Rect2(51, 153, 16, 16)
 
-[node name="HurtBox2" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
 scale = Vector2(0.16, 0.16)
 collision_layer = 2
 script = ExtResource("3_n8u73")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)
 shape = SubResource("RectangleShape2D_k48cb")
 
@@ -35,3 +35,5 @@ shape = SubResource("CircleShape2D_bcvpt")
 
 [node name="ProjectionTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="DamageTimer" type="Timer" parent="."]

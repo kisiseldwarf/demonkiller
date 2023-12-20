@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://c8fkahe0kl8rb"]
 
-[ext_resource type="Script" path="res://scripts/movement/top_down_controller.gd" id="1_1xj47"]
+[ext_resource type="Script" path="res://scripts/movement/player.gd" id="1_ewvwj"]
 [ext_resource type="Shader" path="res://shaders/sprite.gdshader" id="2_70hog"]
 [ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="3_6q5x4"]
 [ext_resource type="Script" path="res://scripts/interaction/hit/hitbox.gd" id="4_ci3ts"]
@@ -46,7 +46,7 @@ script = ExtResource("8_tgmri")
 particles_path = NodePath("../CPUParticles2D")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xemoo"]
-radius = 9.84886
+radius = 17.1172
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkl20"]
 radius = 21.0
@@ -83,9 +83,11 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(724, 264)
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 platform_wall_layers = 1
-script = ExtResource("1_1xj47")
+script = ExtResource("1_ewvwj")
 speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -110,7 +112,6 @@ initial_velocity_max = 86.54
 [node name="HitBox" type="Area2D" parent="."]
 collision_mask = 2
 script = ExtResource("4_ci3ts")
-hp = 50.0
 damage_effects = Array[Resource("res://scripts/interaction/effects/empty_effect.gd")]([SubResource("Resource_ej8lc"), SubResource("Resource_iuduy"), SubResource("Resource_jtvvk"), SubResource("Resource_qgl23")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -144,5 +145,6 @@ shape = SubResource("CircleShape2D_xemoo")
 
 [node name="InvTimer" type="Timer" parent="."]
 
+[connection signal="on_killed" from="HitBox" to="." method="_on_killed"]
 [connection signal="body_entered" from="Sword/Area2D" to="Sword" method="attack_hitbox"]
 [connection signal="timeout" from="Sword/ComboTimer" to="Sword" method="_on_combo_timer_timeout"]

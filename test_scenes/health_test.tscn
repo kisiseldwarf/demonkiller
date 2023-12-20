@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://do4hk4037tp4u"]
+
+[ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="1_5ik7s"]
+[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="2_8tysj"]
+
+[node name="HealthTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5ik7s")]
+
+[node name="Hud" parent="." instance=ExtResource("2_8tysj")]

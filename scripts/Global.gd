@@ -15,11 +15,16 @@ func maybe_get_hud() -> Hud:
 		print_debug("HUD not found !")
 	return hud
 
+func maybe_get_player() -> Player:
+	var player = get_tree().get_first_node_in_group("Player")
+	if (player == null):
+		print_debug("Player cannot be found")
+	return player
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if (hud != null):
 		hud.set_score_counter(score)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

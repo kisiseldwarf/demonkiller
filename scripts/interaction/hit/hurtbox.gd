@@ -2,9 +2,10 @@ extends Area2D
 
 class_name HurtBox
 
-@export var damage : float = 5
+var damage: int
 
 func _ready():
+	damage = $"..".damage
 	area_entered.connect(on_hit);
 
 func on_hit(area : Area2D):
