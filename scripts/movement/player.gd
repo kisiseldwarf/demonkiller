@@ -18,4 +18,5 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _on_killed():
-	hud.show_game_over()
+	if hud != null:
+		hud.show_game_over()
