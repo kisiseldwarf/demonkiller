@@ -140,6 +140,22 @@ offset_right = 152.0
 offset_bottom = 80.0
 text = "Wave Count : 0"
 
+[node name="ContinueWaveLabel" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -114.0
+offset_right = 20.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "On to the next wave : E"
+
 [connection signal="_game_retried" from="GameOver" to="." method="_on_game_over__game_retried"]
 [connection signal="pressed" from="GameOver/RetryButton" to="GameOver" method="retry"]
 [connection signal="pressed" from="GameOver/Quit" to="." method="_on_quit_pressed"]

@@ -11,6 +11,7 @@ size = Vector2(118, 86)
 [node name="wave_test" type="Node2D"]
 
 [node name="WaveTimer" parent="." instance=ExtResource("1_mxfbs")]
+wait_time = 5.0
 
 [node name="Player" parent="." instance=ExtResource("2_7ac0v")]
 

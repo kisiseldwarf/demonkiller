@@ -59,6 +59,7 @@ func new_wave():
 		mob_spawner.pause()
 	if (hud != null):
 		hud.set_wave_count("Wave Count : %s" % wave)
+		hud.show_continue_wave()
 	current_game_phase = GamePhase.IN_BETWEEN_WAVE
 
 func maybe_get_player_camera() -> Camera2D:

@@ -22,13 +22,20 @@ func show_game_over():
 func _show_game_over():
 	$GameOver.show_game_over()
 
+func show_continue_wave():
+	_show_continue_wave()
+
+func _show_continue_wave():
+	$HUD/ContinueWaveLabel.show()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (Input.is_action_just_pressed("attack_a") and Global.in_between_wave()):
+	if (Input.is_action_just_pressed("continue_wave") and Global.in_between_wave()):
+		$HUD/ContinueWaveLabel.hide()
 		Global.next_wave()
 
 func _on_quit_pressed():
