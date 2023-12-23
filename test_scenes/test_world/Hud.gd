@@ -22,11 +22,15 @@ func show_game_over():
 func _show_game_over():
 	$GameOver.show_game_over()
 
-func show_continue_wave():
-	_show_continue_wave()
+func show_new_wave_hud(modificator: Global.WaveModificator):
+	_set_next_wave_modificator_text(modificator)
+	$HUD/WaveHud.show()
 
-func _show_continue_wave():
-	$HUD/ContinueWaveLabel.show()
+func _set_next_wave_modificator_text(modificator: Global.WaveModificator):
+	if (modificator == Global.WaveModificator.MORE_DMG):
+		$HUD/WaveHud/NextWaveModificatorDisplay/Modificator.text = "Frenzy (+ 50% DMG)"
+	if (modificator == Global.WaveModificator.MORE_ENEMIES):
+		$HUD/WaveHud/NextWaveModificatorDisplay/Modificator.text = "Horde (+ 50% DEMONS)"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +39,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (Input.is_action_just_pressed("continue_wave") and Global.in_between_wave()):
-		$HUD/ContinueWaveLabel.hide()
+		$HUD/WaveHud.hide()
 		Global.next_wave()
 
 func _on_quit_pressed():
