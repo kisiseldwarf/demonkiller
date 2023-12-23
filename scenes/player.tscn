@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8fkahe0kl8rb"]
+[gd_scene load_steps=25 format=3 uid="uid://c8fkahe0kl8rb"]
 
 [ext_resource type="Script" path="res://scripts/movement/player.gd" id="1_ewvwj"]
 [ext_resource type="Shader" path="res://shaders/sprite.gdshader" id="2_70hog"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b8gv0b76n54a" path="res://sprites/sword_slash/File4.png" id="14_eirs1"]
 [ext_resource type="Texture2D" uid="uid://c3fl8ahyivvf2" path="res://sprites/sword_slash/File5.png" id="15_51jx2"]
 [ext_resource type="Texture2D" uid="uid://byicey7doppvk" path="res://sprites/sword_slash/File6.png" id="16_qmmb7"]
+[ext_resource type="Script" path="res://scripts/camera/camera_shaker.gd" id="17_1haht"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7rvq"]
 resource_local_to_scene = true
@@ -144,6 +145,15 @@ wait_time = 0.2
 shape = SubResource("CircleShape2D_xemoo")
 
 [node name="InvTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="CameraShaker" type="Node" parent="Camera2D"]
+script = ExtResource("17_1haht")
+max_offset = Vector2(3, 3)
+max_roll = 0.01
+power = 1.0
 
 [connection signal="on_killed" from="HitBox" to="." method="_on_killed"]
 [connection signal="body_entered" from="Sword/Area2D" to="Sword" method="attack_hitbox"]

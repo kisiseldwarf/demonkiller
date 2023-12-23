@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://hx31di5lhoed"]
+
+[ext_resource type="Script" path="res://test_scenes/MobSpawner.gd" id="1_fwpk7"]
+
+[node name="MobSpawner" type="Area2D" groups=["MobSpawner"]]
+position = Vector2(570, 354)
+script = ExtResource("1_fwpk7")
+metadata/_edit_group_ = true
+
+[node name="TimerSpawner" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TimerSpawner" to="." method="spawnerTimeout"]

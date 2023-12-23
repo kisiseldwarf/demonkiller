@@ -4,6 +4,12 @@ class_name Hud
 func set_score_counter(value: int):
 	$HUD/Score.text = var_to_str(value)
 
+func set_time_text(value: String):
+	_set_time_text(value)
+
+func _set_time_text(value: String):
+	$HUD/Time.text = value
+
 func set_life(life: int):
 	_set_life(life)
 
@@ -22,4 +28,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (Input.is_action_just_pressed("attack_a") and Global.in_between_wave()):
+		Global.next_wave()
+
+func _on_quit_pressed():
+	get_tree().quit()
+
+func set_wave_count(value: String): 
+	_set_wave_count(value)
+
+func _set_wave_count(value: String):
+	$HUD/WaveCount.text = value

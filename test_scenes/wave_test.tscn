@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx1pfsswhg87p"]
+
+[ext_resource type="PackedScene" uid="uid://dcpqux2avlq44" path="res://scenes/waver.tscn" id="1_mxfbs"]
+[ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="2_7ac0v"]
+[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="3_srqdv"]
+[ext_resource type="PackedScene" uid="uid://hx31di5lhoed" path="res://scenes/mob_spawner.tscn" id="4_44rvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8mvk"]
+size = Vector2(118, 86)
+
+[node name="wave_test" type="Node2D"]
+
+[node name="WaveTimer" parent="." instance=ExtResource("1_mxfbs")]
+
+[node name="Player" parent="." instance=ExtResource("2_7ac0v")]
+
+[node name="Hud" parent="." instance=ExtResource("3_srqdv")]
+
+[node name="MobSpawner" parent="." instance=ExtResource("4_44rvc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobSpawner"]
+position = Vector2(49, -33)
+shape = SubResource("RectangleShape2D_k8mvk")

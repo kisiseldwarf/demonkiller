@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckw33vh8csljq"]
+
+[ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="1_iahyt"]
+[ext_resource type="PackedScene" uid="uid://hx31di5lhoed" path="res://scenes/mob_spawner.tscn" id="2_ljgrp"]
+
+[node name="random_enemy_pop_test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_iahyt")]
+position = Vector2(186, 407)
+
+[node name="MobSpawner" parent="." instance=ExtResource("2_ljgrp")]
+spawn_rate = 5.0

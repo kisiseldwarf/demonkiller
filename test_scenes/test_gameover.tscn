@@ -6,9 +6,10 @@
 
 [node name="TestGameover" type="Node2D"]
 
+[node name="Enemy" parent="." instance=ExtResource("3_0rbvm")]
+position = Vector2(632, 262)
+damage = 100.0
+
 [node name="Player" parent="." instance=ExtResource("1_o22sa")]
 
 [node name="Hud" parent="." instance=ExtResource("2_jki27")]
-
-[node name="Enemy" parent="." instance=ExtResource("3_0rbvm")]
-damage = 100.0

@@ -6,7 +6,8 @@ extends CharacterBody2D
 @export var PROJECTION_SPEED = 100.0
 @export var score = 1
 @export var attack_speed = 1.0
-@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var hud: Hud = Global.maybe_get_hud()
 
 var direction: Vector2
 var projected = false

@@ -56,12 +56,43 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -221.0
-offset_right = 20.0
-offset_bottom = -198.0
+offset_left = -49.0
+offset_top = -197.0
+offset_right = 49.0
+offset_bottom = -174.0
 grow_horizontal = 2
 grow_vertical = 0
+text = "lorem ipsum"
+
+[node name="Quit" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -241.0
+offset_right = 21.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit"
+
+[node name="Wave" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -171.0
+offset_right = 71.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "wave lorem ipsum"
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -81,6 +112,7 @@ offset_top = 10.0
 offset_right = 23.0
 offset_bottom = 33.0
 grow_horizontal = 2
+text = "0"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
 layout_mode = 0
@@ -92,4 +124,22 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_b8th3")
 texture_progress = ExtResource("4_r50w5")
 
+[node name="Time" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 55.0
+offset_right = 588.0
+offset_bottom = 78.0
+text = "00:00"
+
+[node name="WaveCount" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 57.0
+offset_right = 152.0
+offset_bottom = 80.0
+text = "Wave Count : 0"
+
+[connection signal="_game_retried" from="GameOver" to="." method="_on_game_over__game_retried"]
 [connection signal="pressed" from="GameOver/RetryButton" to="GameOver" method="retry"]
+[connection signal="pressed" from="GameOver/Quit" to="." method="_on_quit_pressed"]

@@ -20,3 +20,6 @@ func _physics_process(_delta):
 func _on_killed():
 	if hud != null:
 		hud.show_game_over()
+
+func get_camera() -> Camera2D:
+	return $"Camera2D"

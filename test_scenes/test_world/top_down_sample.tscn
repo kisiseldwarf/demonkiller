@@ -3,10 +3,9 @@
 [ext_resource type="Script" path="res://test_scenes/test_world/top_down_sample.gd" id="1_rqwxm"]
 [ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_6p2pd"]
 [ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="3_j7yie"]
+[ext_resource type="PackedScene" uid="uid://hx31di5lhoed" path="res://scenes/mob_spawner.tscn" id="5_41k6u"]
+[ext_resource type="PackedScene" uid="uid://dcpqux2avlq44" path="res://scenes/waver.tscn" id="6_agtq5"]
 [ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="13_sclgu"]
-[ext_resource type="PackedScene" uid="uid://dxqebyftb6bfx" path="res://enemy.tscn" id="18_oppnd"]
-[ext_resource type="Script" path="res://scripts/camera/camera_targeter.gd" id="20_pt0ps"]
-[ext_resource type="Script" path="res://scripts/camera/camera_shaker.gd" id="21_oykno"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6qgc"]
 texture = ExtResource("2_6p2pd")
@@ -433,6 +432,9 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_j6qgc")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlygw"]
+size = Vector2(554, 317)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rqwxm")
 
@@ -448,25 +450,13 @@ layer_1/tile_data = PackedInt32Array(131076, 196608, 5, -655370, 327680, 5, -589
 
 [node name="Player" parent="." instance=ExtResource("3_j7yie")]
 
-[node name="Enemy2" parent="." instance=ExtResource("18_oppnd")]
-position = Vector2(540, 383)
-
-[node name="Enemy" parent="." instance=ExtResource("18_oppnd")]
-position = Vector2(543, 228)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-3, 0)
-zoom = Vector2(5, 5)
-
-[node name="CameraTargeter" type="Node" parent="Camera2D"]
-script = ExtResource("20_pt0ps")
-min_zoom = 3.0
-targets = Array[NodePath]([NodePath("../../Player")])
-
-[node name="CameraShaker" type="Node" parent="Camera2D"]
-script = ExtResource("21_oykno")
-max_offset = Vector2(3, 3)
-max_roll = 0.01
-power = 1.0
-
 [node name="Hud" parent="." instance=ExtResource("13_sclgu")]
+
+[node name="MobSpawner" parent="." instance=ExtResource("5_41k6u")]
+position = Vector2(652, 349)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobSpawner"]
+position = Vector2(-7, 1.5)
+shape = SubResource("RectangleShape2D_jlygw")
+
+[node name="WaveTimer" parent="." instance=ExtResource("6_agtq5")]
