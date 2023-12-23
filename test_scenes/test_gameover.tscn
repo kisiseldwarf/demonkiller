@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvkatydka15yy"]
 
 [ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="1_o22sa"]
-[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="2_jki27"]
-[ext_resource type="PackedScene" uid="uid://dxqebyftb6bfx" path="res://enemy.tscn" id="3_0rbvm"]
+[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://scenes/Hud.tscn" id="2_jki27"]
+[ext_resource type="PackedScene" uid="uid://dxqebyftb6bfx" path="res://scenes/enemy_cac.tscn" id="3_0rbvm"]
 
 [node name="TestGameover" type="Node2D"]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://8xcvf7jol2xe"]
+
+[ext_resource type="Script" path="res://scripts/interaction/hit/hurtbox.gd" id="1_muwcu"]
+
+[node name="HurtBox" type="Area2D"]
+scale = Vector2(0.16, 0.16)
+collision_layer = 2
+script = ExtResource("1_muwcu")
+
+[node name="DamageTimer" type="Timer" parent="."]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxqebyftb6bfx"]
+[gd_scene load_steps=6 format=3 uid="uid://bdkmgwqsgwe2l"]
 
-[ext_resource type="Script" path="res://scenes/samples/CharacterBody2D.gd" id="1_h8ena"]
-[ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_rfpmf"]
-[ext_resource type="Script" path="res://scripts/interaction/hit/hurtbox.gd" id="3_n8u73"]
+[ext_resource type="Script" path="res://scenes/enemy_distance.gd" id="1_cdrmx"]
+[ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_4rum2"]
+[ext_resource type="Script" path="res://scripts/interaction/hit/hurtbox.gd" id="3_hil4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k48cb"]
 size = Vector2(100, 100)
@@ -10,22 +10,22 @@ size = Vector2(100, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcvpt"]
 radius = 14.0
 
-[node name="Enemy" type="CharacterBody2D" groups=["attackable", "enemy"]]
+[node name="EnemyDistance" type="CharacterBody2D" groups=["attackable", "enemy"]]
 process_mode = 3
 position = Vector2(694, 278)
-script = ExtResource("1_h8ena")
+script = ExtResource("1_cdrmx")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_rfpmf")
+texture = ExtResource("2_4rum2")
 region_enabled = true
 region_rect = Rect2(51, 153, 16, 16)
 
 [node name="HurtBox" type="Area2D" parent="."]
 scale = Vector2(0.16, 0.16)
 collision_layer = 2
-script = ExtResource("3_n8u73")
+script = ExtResource("3_hil4d")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)

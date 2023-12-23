@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://i4hecnqdqukg"]
+
+[ext_resource type="PackedScene" uid="uid://8xcvf7jol2xe" path="res://scenes/hurt_box.tscn" id="1_nttsw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bj1m7"]
+size = Vector2(50, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8nnc"]
+radius = 263.688
+
+[node name="ThunderBall" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+texture = SubResource("PlaceholderTexture2D_bj1m7")
+
+[node name="HurtBox" parent="." instance=ExtResource("1_nttsw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_g8nnc")

@@ -9,6 +9,10 @@ var next_wave_modificator = null
 var score = 0
 var wave = 0
 
+# percentage
+var frenzyModifer = 3
+var hordeModifer = 3
+
 @onready var hud = maybe_get_hud()
 @onready var mob_spawner = maybe_get_mob_spawner()
 @onready var waver = maybe_get_waver()
@@ -60,9 +64,9 @@ func new_wave():
 	if (mob_spawner != null):
 		mob_spawner.pause()
 		if (next_wave_modificator == WaveModificator.MORE_ENEMIES):
-			mob_spawner.spawn_rate += mob_spawner.spawn_rate * 0.5
+			mob_spawner.spawn_rate += mob_spawner.spawn_rate * hordeModifer
 		if (next_wave_modificator == WaveModificator.MORE_DMG):
-			mob_spawner.enemies_dmg += mob_spawner.enemies_dmg * 0.5;
+			mob_spawner.enemies_dmg += mob_spawner.enemies_dmg * frenzyModifer
 	if (hud != null):
 		hud.set_wave_count("Wave Count : %s" % wave)
 		hud.show_new_wave_hud(next_wave_modificator)

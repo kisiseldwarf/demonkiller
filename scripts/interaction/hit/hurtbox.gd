@@ -2,11 +2,13 @@ extends Area2D
 
 class_name HurtBox
 
-var damage: int
-@onready var damageTimer = $"../DamageTimer"
+@export var damage: int
+@export var damage_window: int
+
+@onready var damageTimer = $"DamageTimer"
 
 func _ready():
-	damage = $"..".damage
+	damageTimer.wait_time = damage_window
 	damageTimer.timeout.connect(hit.bind())
 	area_entered.connect(on_hit);
 	area_exited.connect(no_on_hit)

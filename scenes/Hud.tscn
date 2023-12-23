@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl3p37yaagj4a"]
 
-[ext_resource type="Script" path="res://test_scenes/test_world/Hud.gd" id="1_nxspo"]
+[ext_resource type="Script" path="res://scenes/Hud.gd" id="1_nxspo"]
 [ext_resource type="Texture2D" uid="uid://dbff6t7eb70t7" path="res://sprites/ui/barBack_horizontalMid.png" id="2_b8th3"]
-[ext_resource type="Script" path="res://test_scenes/GameOver.gd" id="2_ke4f6"]
+[ext_resource type="Script" path="res://scenes/GameOver.gd" id="2_ke4f6"]
 [ext_resource type="Texture2D" uid="uid://b7p0t38vyln1k" path="res://sprites/ui/barGreen_horizontalMid.png" id="4_r50w5"]
 
 [node name="Hud" type="CanvasLayer" groups=["Hud"]]

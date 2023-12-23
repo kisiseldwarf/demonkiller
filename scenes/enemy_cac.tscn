@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxqebyftb6bfx"]
+
+[ext_resource type="Script" path="res://scenes/enemy_cac.gd" id="1_8gpa3"]
+[ext_resource type="Texture2D" uid="uid://cxilgqcrls44w" path="res://sprites/tilesets/tilemap.png" id="2_qmxxy"]
+[ext_resource type="PackedScene" uid="uid://8xcvf7jol2xe" path="res://scenes/hurt_box.tscn" id="3_qixki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3jnk"]
+size = Vector2(100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcvpt"]
+radius = 14.0
+
+[node name="EnemyCac" type="CharacterBody2D" groups=["attackable", "enemy"]]
+process_mode = 3
+position = Vector2(694, 278)
+script = ExtResource("1_8gpa3")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_qmxxy")
+region_enabled = true
+region_rect = Rect2(17, 153, 16, 16)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_qixki")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+modulate = Color(1, 0, 0, 1)
+shape = SubResource("RectangleShape2D_h3jnk")
+
+[node name="collisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bcvpt")
+
+[node name="ProjectionTimer" type="Timer" parent="."]
+wait_time = 0.1

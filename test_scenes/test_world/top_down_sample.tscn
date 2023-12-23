@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8fkahe0kl8rb" path="res://scenes/player.tscn" id="3_j7yie"]
 [ext_resource type="PackedScene" uid="uid://hx31di5lhoed" path="res://scenes/mob_spawner.tscn" id="5_41k6u"]
 [ext_resource type="PackedScene" uid="uid://dcpqux2avlq44" path="res://scenes/waver.tscn" id="6_agtq5"]
-[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://test_scenes/Hud.tscn" id="13_sclgu"]
+[ext_resource type="PackedScene" uid="uid://cl3p37yaagj4a" path="res://scenes/Hud.tscn" id="13_sclgu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6qgc"]
 texture = ExtResource("2_6p2pd")
@@ -460,3 +460,4 @@ position = Vector2(-7, 1.5)
 shape = SubResource("RectangleShape2D_jlygw")
 
 [node name="WaveTimer" parent="." instance=ExtResource("6_agtq5")]
+wait_time = 15.0

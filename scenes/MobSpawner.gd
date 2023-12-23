@@ -2,11 +2,15 @@ extends Area2D
 
 class_name MobSpawner
 
-var spawnArea
-@onready var origin
-@onready var enemy = preload("res://enemy.tscn");
-@export var spawn_rate = 1.0
+
+@onready var enemy = preload("res://scenes/enemy_cac.tscn");
+@onready var player = Global.maybe_get_player()
+
+@export var spawn_rate = 2.0
 @export var enemies_dmg = 25.0
+
+var spawnArea
+var origin
 
 func pause():
 	$TimerSpawner.stop()
@@ -27,9 +31,20 @@ func _ready():
 func _process(delta):
 	pass
 
+func point_comprised_inside_x_boundaries(point, epsilon):
+	return point.x >= player.position.x - epsilon && point.x <= player.position.x + epsilon
+
+func point_comprised_inside_y_boundaries(point, epsilon):
+	return point.y >= player.position.y - epsilon && point.y <= player.position.y + epsilon
+
+func point_is_close_to_player(point, epsilon):
+	return point_comprised_inside_x_boundaries(point, epsilon) && point_comprised_inside_y_boundaries(point, epsilon)
+
 func spawnerTimeout():
 	print("spawn")
 	var point = Vector2(randf_range(origin.x, origin.x + spawnArea.size.x), randf_range(origin.y, origin.y + spawnArea.size.y))
+	if (point_is_close_to_player(point, 5.0)):
+		point += Vector2(10,0)
 	print("spawn " + str(point))
 	var enemy_instance: Enemy = enemy.instantiate()
 	enemy_instance.damage = enemies_dmg

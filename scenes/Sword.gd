@@ -21,6 +21,8 @@ func attack(attackType: AttackType):
 	is_attacking = false
 
 func _input(input):
+	if (is_attacking == true): return
+	
 	if Input.is_action_just_pressed("attack_a"):
 		attack(AttackType.A)
 	if Input.is_action_just_pressed("attack_b"):

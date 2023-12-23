@@ -8,6 +8,7 @@ class_name Enemy
 @export var PROJECTION_SPEED = 100.0
 @export var score = 1
 @export var attack_speed = 1.0
+
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var hud: Hud = Global.maybe_get_hud()
 
@@ -17,7 +18,8 @@ var projection_direction: Vector2
 var player_pos = Vector2.ZERO
 
 func _ready():
-	$DamageTimer.wait_time = attack_speed
+	$HurtBox.damage_window = attack_speed
+	$HurtBox.damage = damage
 
 func _physics_process(delta):
 	if projected == false:

@@ -1,15 +1,15 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=31 format=3 uid="uid://cfts60k443ej3"]
 
-[ext_resource type="PackedScene" uid="uid://dfh2vfltyog6k" path="res://scenes/common/ui/dialog_box.tscn" id="1_lp2vr"]
+[ext_resource type="PackedScene" path="res://scenes/common/ui/dialog_box.tscn" id="1_lp2vr"]
 [ext_resource type="Theme" uid="uid://byds11vsd6ber" path="res://themes/pixelart/pixelart.tres" id="3_3nvoo"]
 [ext_resource type="Script" path="res://scripts/ui/inventory_menu.gd" id="3_qvf1g"]
 [ext_resource type="Script" path="res://scripts/camera/camera_targeter.gd" id="5_8twu0"]
 [ext_resource type="Texture2D" uid="uid://bs5ru4bg8n3bj" path="res://sprites/tilesets/test-tileset.png" id="6_06eao"]
 [ext_resource type="PackedScene" uid="uid://bfttx6rqnafe" path="res://scenes/common/camera/minimap_viewport.tscn" id="6_147y0"]
-[ext_resource type="PackedScene" uid="uid://b0ikql5uc68xp" path="res://scenes/common/ui/pause_menu.tscn" id="6_qry4t"]
+[ext_resource type="PackedScene" path="res://scenes/common/ui/pause_menu.tscn" id="6_qry4t"]
 [ext_resource type="Script" path="res://scripts/camera/camera_area_targeter.gd" id="7_60w6n"]
 [ext_resource type="PackedScene" uid="uid://dnlir14iywfl8" path="res://scenes/common/simple_platformer_character.tscn" id="7_y5jga"]
-[ext_resource type="Resource" uid="uid://cl0it1364ohpu" path="res://game_resources/camera_area_entered_event.tres" id="8_3ebwk"]
+[ext_resource type="Resource" path="res://game_resources/camera_area_entered_event.tres" id="8_3ebwk"]
 [ext_resource type="Script" path="res://scripts/interaction/dialog/dialog_interactable.gd" id="9_xhclb"]
 [ext_resource type="Texture2D" uid="uid://bi7fkmg3oosb7" path="res://sprites/shapes/square.png" id="10_e8em0"]
 [ext_resource type="PackedScene" uid="uid://c73mpiglgnsfd" path="res://scenes/common/camera/camera_area.tscn" id="11_xajsl"]
@@ -22,32 +22,6 @@ shader_parameter/background_color = null
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wesg3"]
 viewport_path = NodePath("minimap_viewport")
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22l4c"]
-animation = &"off"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0gom6"]
-animation = &"on"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w1x2n"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_we516"]
-xfade_time = 1.0
-advance_mode = 2
-advance_expression = "is_on"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aly0b"]
-xfade_time = 1.0
-advance_mode = 2
-advance_expression = "not is_on"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6i833"]
-states/off/node = SubResource("AnimationNodeAnimation_22l4c")
-states/off/position = Vector2(418, 100)
-states/on/node = SubResource("AnimationNodeAnimation_0gom6")
-states/on/position = Vector2(556, 100)
-transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_w1x2n"), "off", "on", SubResource("AnimationNodeStateMachineTransition_we516"), "on", "off", SubResource("AnimationNodeStateMachineTransition_aly0b")]
 
 [sub_resource type="Animation" id="Animation_tvxvt"]
 length = 0.001
@@ -100,6 +74,32 @@ _data = {
 "off": SubResource("Animation_3ru1y"),
 "on": SubResource("Animation_iwdp4")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22l4c"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0gom6"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w1x2n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_we516"]
+xfade_time = 1.0
+advance_mode = 2
+advance_expression = "is_on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aly0b"]
+xfade_time = 1.0
+advance_mode = 2
+advance_expression = "not is_on"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6i833"]
+states/off/node = SubResource("AnimationNodeAnimation_22l4c")
+states/off/position = Vector2(418, 100)
+states/on/node = SubResource("AnimationNodeAnimation_0gom6")
+states/on/position = Vector2(556, 100)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_w1x2n"), "off", "on", SubResource("AnimationNodeStateMachineTransition_we516"), "on", "off", SubResource("AnimationNodeStateMachineTransition_aly0b")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6w22"]
 
@@ -226,10 +226,12 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="AnimationTree" type="AnimationTree" parent="ui/inventory_menu"]
+libraries = {
+"": SubResource("AnimationLibrary_mkguu")
+}
 tree_root = SubResource("AnimationNodeStateMachine_6i833")
-anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("..")
-active = true
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ui/inventory_menu"]
 libraries = {
@@ -290,9 +292,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 editor_draw_limits = true
 
-[node name="CameraTargeter" type="Node" parent="camera_player" node_paths=PackedStringArray("camera")]
+[node name="CameraTargeter" type="Node" parent="camera_player"]
 script = ExtResource("5_8twu0")
-camera = NodePath("..")
 min_zoom = 2.0
 targets = Array[NodePath]([NodePath("../../platformer_character")])
 
