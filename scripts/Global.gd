@@ -57,6 +57,7 @@ func new_wave():
 		node.queue_free()
 	if (mob_spawner != null):
 		mob_spawner.pause()
+		mob_spawner.spawn_rate += 5
 	if (hud != null):
 		hud.set_wave_count("Wave Count : %s" % wave)
 		hud.show_continue_wave()
