@@ -6,7 +6,14 @@ class_name MobSpawner
 @onready var enemy = preload("res://scenes/enemy_cac.tscn");
 @onready var player = Global.maybe_get_player()
 
-@export var spawn_rate = 2.0
+# @export var spawn_rate = 2.0
+@export var spawn_rate: float = 2.0:
+	get:
+		return spawn_rate
+	set(value):
+		spawn_rate = value
+		$TimerSpawner.wait_time = 1.0 / spawn_rate
+
 @export var enemies_dmg = 25.0
 
 var spawnArea
@@ -25,7 +32,6 @@ func _ready():
 		return
 	spawnArea = $CollisionShape2D.shape.get_rect()
 	origin = spawnArea.position + position
-	$TimerSpawner.wait_time = 1 / spawn_rate
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

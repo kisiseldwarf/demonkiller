@@ -8,6 +8,61 @@
 [node name="Hud" type="CanvasLayer" groups=["Hud"]]
 script = ExtResource("1_nxspo")
 
+[node name="PauseScreen" type="Panel" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Pause"
+
+[node name="RetryButton" type="Button" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 49.0
+offset_right = 25.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="Quit" type="Button" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -241.0
+offset_right = 21.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit"
+
 [node name="GameOver" type="Panel" parent="."]
 process_mode = 2
 visible = false
@@ -185,6 +240,7 @@ layout_mode = 2
 text = "Lorem Ipsum"
 horizontal_alignment = 1
 
-[connection signal="_game_retried" from="GameOver" to="." method="_on_game_over__game_retried"]
-[connection signal="pressed" from="GameOver/RetryButton" to="GameOver" method="retry"]
+[connection signal="pressed" from="PauseScreen/RetryButton" to="." method="retry"]
+[connection signal="pressed" from="PauseScreen/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="GameOver/RetryButton" to="." method="retry"]
 [connection signal="pressed" from="GameOver/Quit" to="." method="_on_quit_pressed"]

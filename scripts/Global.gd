@@ -10,8 +10,8 @@ var score = 0
 var wave = 0
 
 # percentage
-var frenzyModifer = 3
-var hordeModifer = 3
+var frenzyModifer = 0.5
+var hordeModifer = 0.5
 
 @onready var hud = maybe_get_hud()
 @onready var mob_spawner = maybe_get_mob_spawner()

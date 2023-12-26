@@ -22,6 +22,24 @@ func show_game_over():
 func _show_game_over():
 	$GameOver.show_game_over()
 
+func show_hud(show: bool):
+	_show_hud(show)
+
+func _show_hud(show: bool):
+	if show == true:
+		$HUD.show()
+	else:
+		$HUD.hide()
+
+func pause_screen_display(show: bool):
+	_pause_screen_display(show)
+
+func _pause_screen_display(show: bool):
+	if (show == true):
+		$PauseScreen.show()
+	else:
+		$PauseScreen.hide()
+
 func show_new_wave_hud(modificator: Global.WaveModificator):
 	_set_next_wave_modificator_text(modificator)
 	$HUD/WaveHud.show()
@@ -50,3 +68,9 @@ func set_wave_count(value: String):
 
 func _set_wave_count(value: String):
 	$HUD/WaveCount.text = value
+
+func retry():
+	for node in get_tree().get_nodes_in_group("enemy"):
+		node.queue_free()
+	get_tree().paused = false
+	get_tree().reload_current_scene()
